@@ -1,6 +1,6 @@
 # Claude Code Guideline
 
-A living collection of knowledge and skills for working with Claude Code effectively.
+A living collection of knowledge, skills, and a complete demo for working with Claude Code effectively.
 
 ---
 
@@ -8,11 +8,29 @@ A living collection of knowledge and skills for working with Claude Code effecti
 
 ```
 claude-code-guideline/
+  README.md
   knowledge/
-    claude-code-core.md     ← Core principles distilled from Claude Code docs
-  skills/
-    playwright/
-      SKILL.md              ← Playwright testing skill (example)
+    claude-code-core.md          ← Core principles distilled from Claude Code docs
+  demo/
+    README.md                    ← Explains the demo in detail
+    .claude/
+      CLAUDE.md                  ← Root project context (auto-loaded by Claude Code)
+      settings.json              ← Permissions + hooks
+      rules/
+        testing.md               ← Playwright/POM coding rules
+        code-style.md            ← TypeScript style rules
+        security.md              ← Security rules (credentials, secrets)
+      agents/
+        test-reviewer.md         ← Review test files for best practices
+        add-test-case.md         ← Add a data-driven test case
+        fix-failing-test.md      ← Debug and fix a failing test
+      skills/
+        playwright/
+          SKILL.md               ← Full Playwright testing skill
+        add-page/
+          SKILL.md               ← Scaffold a new Page Object class
+        add-auth-setup/
+          SKILL.md               ← Add auth storage state setup for a new role
 ```
 
 ---
@@ -23,57 +41,40 @@ claude-code-guideline/
 
 Reference these when setting up CLAUDE.md for a project or when onboarding a new codebase. They distill the Claude Code documentation into actionable guidelines.
 
-- [knowledge/claude-code-core.md](knowledge/claude-code-core.md) — Memory system, workflows, context management, prompting patterns, permission modes
+- [knowledge/claude-code-core.md](knowledge/claude-code-core.md) — Memory system, skills, workflows, context management, prompting patterns, hooks, subagents, MCP, permission modes
 
-### 2. Skill files
+### 2. Demo — Complete `.claude/` folder
 
-Skills are `SKILL.md` files placed in `.claude/skills/<name>/SKILL.md` inside a project. Claude Code loads them on-demand when relevant to your prompt, or you can invoke them explicitly with `/skill-name`.
+The `demo/` folder is a **ready-to-copy Claude Code project setup** for a TypeScript + Playwright automation test suite.
 
-**To use a skill in a project:**
-
-```bash
-mkdir -p .claude/skills/playwright
-cp /path/to/claude-code-guideline/skills/playwright/SKILL.md .claude/skills/playwright/SKILL.md
-```
-
-Or symlink for shared maintenance:
+**Copy into a project:**
 
 ```bash
-ln -s /path/to/claude-code-guideline/skills/playwright .claude/skills/playwright
+cp demo/.claude/CLAUDE.md /path/to/your-project/
+cp -r demo/.claude /path/to/your-project/
 ```
 
-### Available skills
+See [demo/README.md](demo/README.md) for a full explanation of every file and how each is used.
 
-| Skill                                    | Description                                                                                                       |
-| ---------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| [playwright](skills/playwright/SKILL.md) | Write, extend, and debug Playwright tests. Covers POM, fixtures, data-driven cases, auth setup, locator strategy. |
+### 3. Skills
 
----
+Skills are `SKILL.md` files in `.claude/skills/<name>/SKILL.md`. Claude Code loads them when the user's prompt matches the skill's `description`.
 
-## Adding a New Skill
+| Skill                                                         | Description                                                                                                       |
+| ------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| [playwright](demo/.claude/skills/playwright/SKILL.md)         | Write, extend, and debug Playwright tests. Covers POM, fixtures, data-driven cases, auth setup, locator strategy. |
+| [add-page](demo/.claude/skills/add-page/SKILL.md)             | Scaffold a new Page Object class for a page or screen.                                                            |
+| [add-auth-setup](demo/.claude/skills/add-auth-setup/SKILL.md) | Add auth storage state setup for a new user role.                                                                 |
 
-1. Create a directory: `skills/<skill-name>/`
-2. Create `SKILL.md` with YAML frontmatter:
+### 4. Agents
 
-```yaml
----
-name: skill-name
-description: One-sentence description of when Claude should apply this skill.
----
+Agents are markdown files in `.claude/agents/` with a `description:` frontmatter. Claude auto-invokes them when the request matches.
 
-# Skill Title
-
-## Context
-What problem this skill solves.
-
-## Patterns
-The key patterns, conventions, and code examples.
-
-## Checklist
-Step-by-step workflow for common tasks in this domain.
-```
-
-Keep skills **specific and verifiable**. Include real code examples from the project. Avoid general advice that Claude already knows.
+| Agent                                                       | Auto-invokes when...                     |
+| ----------------------------------------------------------- | ---------------------------------------- |
+| [test-reviewer](demo/.claude/agents/test-reviewer.md)       | "review this test", "audit test quality" |
+| [add-test-case](demo/.claude/agents/add-test-case.md)       | "add a test case", "add a scenario"      |
+| [fix-failing-test](demo/.claude/agents/fix-failing-test.md) | "this test is failing", "fix the error"  |
 
 ---
 
