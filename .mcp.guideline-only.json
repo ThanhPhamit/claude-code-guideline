@@ -1,0 +1,535 @@
+{
+  "mcpServers": {
+
+    "_comment_iac": "=== 2. INFRASTRUCTURE AS CODE ===",
+
+    "terraform": {
+      "command": "docker",
+      "args": ["run", "-i", "--rm", "hashicorp/terraform-mcp-server"]
+    },
+
+    "_comment_aws_mandatory": "=== 3.1 AWS MANDATORY ===",
+
+    "aws-api": {
+      "command": "uvx",
+      "args": ["awslabs.aws-api-mcp-server@latest"],
+      "env": {
+        "AWS_PROFILE": "phamvanthanh-readonly-access-mfa",
+        "AWS_REGION": "ap-southeast-1"
+      }
+    },
+    "aws-knowledge": {
+      "type": "http",
+      "url": "https://knowledge-mcp.global.api.aws"
+    },
+    "cloudwatch": {
+      "command": "uvx",
+      "args": ["awslabs.cloudwatch-mcp-server@latest"],
+      "env": {
+        "AWS_PROFILE": "phamvanthanh-readonly-access-mfa",
+        "AWS_REGION": "ap-southeast-1"
+      }
+    },
+    "cloudtrail": {
+      "command": "uvx",
+      "args": ["awslabs.cloudtrail-mcp-server@latest"],
+      "env": {
+        "AWS_PROFILE": "phamvanthanh-readonly-access-mfa",
+        "AWS_REGION": "ap-southeast-1"
+      }
+    },
+    "iam": {
+      "command": "uvx",
+      "args": ["awslabs.iam-mcp-server@latest"],
+      "env": {
+        "AWS_PROFILE": "phamvanthanh-readonly-access-mfa",
+        "AWS_REGION": "ap-southeast-1"
+      }
+    },
+    "well-architected": {
+      "command": "uvx",
+      "args": ["--from", "awslabs.well-architected-security-mcp-server", "well-architected-security-mcp-server"],
+      "env": {
+        "AWS_PROFILE": "phamvanthanh-readonly-access-mfa",
+        "AWS_REGION": "ap-southeast-1"
+      }
+    },
+    "billing": {
+      "command": "uvx",
+      "args": ["awslabs.billing-cost-management-mcp-server@latest"],
+      "env": {
+        "AWS_PROFILE": "billing-readonly",
+        "AWS_REGION": "us-east-1"
+      }
+    },
+    "aws-pricing": {
+      "command": "uvx",
+      "args": ["awslabs.aws-pricing-mcp-server@latest"],
+      "env": {
+        "AWS_PROFILE": "phamvanthanh-readonly-access-mfa",
+        "AWS_REGION": "us-east-1"
+      }
+    },
+
+    "_comment_aws_infra": "=== 3.2 AWS OPTIONAL — Infrastructure & Compute ===",
+
+    "iac": {
+      "command": "uvx",
+      "args": ["awslabs.aws-iac-mcp-server@latest"],
+      "env": {
+        "AWS_PROFILE": "phamvanthanh-readonly-access-mfa",
+        "AWS_REGION": "ap-southeast-1"
+      }
+    },
+    "eks": {
+      "command": "uvx",
+      "args": ["awslabs.eks-mcp-server@latest"],
+      "env": {
+        "AWS_PROFILE": "phamvanthanh-readonly-access-mfa",
+        "AWS_REGION": "ap-southeast-1"
+      }
+    },
+    "ecs": {
+      "command": "uvx",
+      "args": ["--from", "awslabs-ecs-mcp-server", "ecs-mcp-server"],
+      "env": {
+        "AWS_PROFILE": "phamvanthanh-readonly-access-mfa",
+        "AWS_REGION": "ap-southeast-1"
+      }
+    },
+    "serverless": {
+      "command": "uvx",
+      "args": ["awslabs.aws-serverless-mcp-server@latest"],
+      "env": {
+        "AWS_PROFILE": "phamvanthanh-readonly-access-mfa",
+        "AWS_REGION": "ap-southeast-1"
+      }
+    },
+    "lambda-tool": {
+      "command": "uvx",
+      "args": ["awslabs.lambda-tool-mcp-server@latest"],
+      "env": {
+        "AWS_PROFILE": "phamvanthanh-readonly-access-mfa",
+        "AWS_REGION": "ap-southeast-1"
+      }
+    },
+    "finch": {
+      "command": "uvx",
+      "args": ["awslabs.finch-mcp-server@latest"],
+      "env": {
+        "AWS_PROFILE": "phamvanthanh-readonly-access-mfa",
+        "AWS_REGION": "ap-southeast-1"
+      }
+    },
+    "step-functions": {
+      "command": "uvx",
+      "args": ["awslabs.stepfunctions-tool-mcp-server@latest"],
+      "env": {
+        "AWS_PROFILE": "phamvanthanh-readonly-access-mfa",
+        "AWS_REGION": "ap-southeast-1"
+      }
+    },
+    "aws-support": {
+      "command": "uvx",
+      "args": ["awslabs.aws-support-mcp-server@latest"],
+      "env": {
+        "AWS_PROFILE": "phamvanthanh-readonly-access-mfa",
+        "AWS_REGION": "us-east-1"
+      }
+    },
+    "aws-prometheus": {
+      "command": "uvx",
+      "args": ["awslabs.prometheus-mcp-server@latest"],
+      "env": {
+        "AWS_PROFILE": "phamvanthanh-readonly-access-mfa",
+        "AWS_REGION": "ap-southeast-1"
+      }
+    },
+    "cw-app-signals": {
+      "command": "uvx",
+      "args": ["awslabs.cloudwatch-applicationsignals-mcp-server@latest"],
+      "env": {
+        "AWS_PROFILE": "phamvanthanh-readonly-access-mfa",
+        "AWS_REGION": "ap-southeast-1"
+      }
+    },
+
+    "_comment_aws_db": "=== 3.3 AWS OPTIONAL — Database ===",
+
+    "dynamodb": {
+      "command": "uvx",
+      "args": ["awslabs.dynamodb-mcp-server@latest"],
+      "env": {
+        "AWS_PROFILE": "phamvanthanh-readonly-access-mfa",
+        "AWS_REGION": "ap-southeast-1"
+      }
+    },
+    "aurora-postgresql": {
+      "command": "uvx",
+      "args": ["awslabs.postgres-mcp-server@latest"],
+      "env": {
+        "AWS_PROFILE": "phamvanthanh-readonly-access-mfa",
+        "AWS_REGION": "ap-southeast-1"
+      }
+    },
+    "aurora-mysql": {
+      "command": "uvx",
+      "args": ["awslabs.mysql-mcp-server@latest"],
+      "env": {
+        "AWS_PROFILE": "phamvanthanh-readonly-access-mfa",
+        "AWS_REGION": "ap-southeast-1"
+      }
+    },
+    "aurora-dsql": {
+      "command": "uvx",
+      "args": ["awslabs.aurora-dsql-mcp-server@latest"],
+      "env": {
+        "AWS_PROFILE": "phamvanthanh-readonly-access-mfa",
+        "AWS_REGION": "ap-southeast-1"
+      }
+    },
+    "documentdb": {
+      "command": "uvx",
+      "args": ["awslabs.documentdb-mcp-server@latest"],
+      "env": {
+        "AWS_PROFILE": "phamvanthanh-readonly-access-mfa",
+        "AWS_REGION": "ap-southeast-1"
+      }
+    },
+    "neptune": {
+      "command": "uvx",
+      "args": ["awslabs.amazon-neptune-mcp-server@latest"],
+      "env": {
+        "AWS_PROFILE": "phamvanthanh-readonly-access-mfa",
+        "AWS_REGION": "ap-southeast-1"
+      }
+    },
+    "keyspaces": {
+      "command": "uvx",
+      "args": ["awslabs.amazon-keyspaces-mcp-server@latest"],
+      "env": {
+        "AWS_PROFILE": "phamvanthanh-readonly-access-mfa",
+        "AWS_REGION": "ap-southeast-1"
+      }
+    },
+    "timestream-influxdb": {
+      "command": "uvx",
+      "args": ["awslabs.timestream-for-influxdb-mcp-server@latest"],
+      "env": {
+        "AWS_PROFILE": "phamvanthanh-readonly-access-mfa",
+        "AWS_REGION": "ap-southeast-1"
+      }
+    },
+    "elasticache": {
+      "command": "uvx",
+      "args": ["awslabs.elasticache-mcp-server@latest"],
+      "env": {
+        "AWS_PROFILE": "phamvanthanh-readonly-access-mfa",
+        "AWS_REGION": "ap-southeast-1"
+      }
+    },
+    "elasticache-valkey": {
+      "command": "uvx",
+      "args": ["awslabs.valkey-mcp-server@latest"],
+      "env": {
+        "AWS_PROFILE": "phamvanthanh-readonly-access-mfa",
+        "AWS_REGION": "ap-southeast-1"
+      }
+    },
+    "elasticache-memcached": {
+      "command": "uvx",
+      "args": ["awslabs.memcached-mcp-server@latest"],
+      "env": {
+        "AWS_PROFILE": "phamvanthanh-readonly-access-mfa",
+        "AWS_REGION": "ap-southeast-1"
+      }
+    },
+    "s3-tables": {
+      "command": "uvx",
+      "args": ["awslabs.s3-tables-mcp-server@latest"],
+      "env": {
+        "AWS_PROFILE": "phamvanthanh-readonly-access-mfa",
+        "AWS_REGION": "ap-southeast-1"
+      }
+    },
+    "redshift": {
+      "command": "uvx",
+      "args": ["awslabs.redshift-mcp-server@latest"],
+      "env": {
+        "AWS_PROFILE": "phamvanthanh-readonly-access-mfa",
+        "AWS_REGION": "ap-southeast-1"
+      }
+    },
+
+    "_comment_aws_messaging": "=== 3.4 AWS OPTIONAL — Messaging & Integration ===",
+
+    "sns-sqs": {
+      "command": "uvx",
+      "args": ["awslabs.amazon-sns-sqs-mcp-server@latest"],
+      "env": {
+        "AWS_PROFILE": "phamvanthanh-readonly-access-mfa",
+        "AWS_REGION": "ap-southeast-1"
+      }
+    },
+    "mq": {
+      "command": "uvx",
+      "args": ["awslabs.amazon-mq-mcp-server@latest"],
+      "env": {
+        "AWS_PROFILE": "phamvanthanh-readonly-access-mfa",
+        "AWS_REGION": "ap-southeast-1"
+      }
+    },
+    "msk": {
+      "command": "uvx",
+      "args": ["awslabs.aws-msk-mcp-server@latest"],
+      "env": {
+        "AWS_PROFILE": "phamvanthanh-readonly-access-mfa",
+        "AWS_REGION": "ap-southeast-1"
+      }
+    },
+    "appsync": {
+      "command": "uvx",
+      "args": ["awslabs.aws-appsync-mcp-server@latest"],
+      "env": {
+        "AWS_PROFILE": "phamvanthanh-readonly-access-mfa",
+        "AWS_REGION": "ap-southeast-1"
+      }
+    },
+
+    "_comment_aws_aiml": "=== 3.5 AWS OPTIONAL — AI/ML ===",
+
+    "bedrock-kb-retrieval": {
+      "command": "uvx",
+      "args": ["awslabs.bedrock-kb-retrieval-mcp-server@latest"],
+      "env": {
+        "AWS_PROFILE": "phamvanthanh-readonly-access-mfa",
+        "AWS_REGION": "ap-southeast-1"
+      }
+    },
+    "kendra-index": {
+      "command": "uvx",
+      "args": ["awslabs.amazon-kendra-index-mcp-server@latest"],
+      "env": {
+        "AWS_PROFILE": "phamvanthanh-readonly-access-mfa",
+        "AWS_REGION": "ap-southeast-1"
+      }
+    },
+    "q-business": {
+      "command": "uvx",
+      "args": ["awslabs.amazon-qbusiness-anonymous-mcp-server@latest"],
+      "env": {
+        "AWS_PROFILE": "phamvanthanh-readonly-access-mfa",
+        "AWS_REGION": "ap-southeast-1"
+      }
+    },
+    "q-index": {
+      "command": "uvx",
+      "args": ["awslabs.amazon-qindex-mcp-server@latest"],
+      "env": {
+        "AWS_PROFILE": "phamvanthanh-readonly-access-mfa",
+        "AWS_REGION": "ap-southeast-1"
+      }
+    },
+    "nova-canvas": {
+      "command": "uvx",
+      "args": ["awslabs.nova-canvas-mcp-server@latest"],
+      "env": {
+        "AWS_PROFILE": "phamvanthanh-readonly-access-mfa",
+        "AWS_REGION": "ap-southeast-1"
+      }
+    },
+    "bedrock-data-automation": {
+      "command": "uvx",
+      "args": ["awslabs.aws-bedrock-data-automation-mcp-server@latest"],
+      "env": {
+        "AWS_PROFILE": "phamvanthanh-readonly-access-mfa",
+        "AWS_REGION": "ap-southeast-1"
+      }
+    },
+    "bedrock-custom-model": {
+      "command": "uvx",
+      "args": ["awslabs.aws-bedrock-custom-model-import-mcp-server@latest"],
+      "env": {
+        "AWS_PROFILE": "phamvanthanh-readonly-access-mfa",
+        "AWS_REGION": "ap-southeast-1"
+      }
+    },
+    "sagemaker": {
+      "command": "uvx",
+      "args": ["awslabs.sagemaker-ai-mcp-server@latest"],
+      "env": {
+        "AWS_PROFILE": "phamvanthanh-readonly-access-mfa",
+        "AWS_REGION": "ap-southeast-1"
+      }
+    },
+    "bedrock-agentcore": {
+      "command": "uvx",
+      "args": ["awslabs.amazon-bedrock-agentcore-mcp-server@latest"],
+      "env": {
+        "AWS_PROFILE": "phamvanthanh-readonly-access-mfa",
+        "AWS_REGION": "ap-southeast-1"
+      }
+    },
+
+    "_comment_aws_data": "=== 3.6 AWS OPTIONAL — Data Processing & Other ===",
+
+    "data-processing": {
+      "command": "uvx",
+      "args": ["awslabs.aws-dataprocessing-mcp-server@latest"],
+      "env": {
+        "AWS_PROFILE": "phamvanthanh-readonly-access-mfa",
+        "AWS_REGION": "ap-southeast-1"
+      }
+    },
+    "sagemaker-spark-troubleshoot": {
+      "command": "uvx",
+      "args": ["awslabs.sagemaker-unified-studio-spark-troubleshooting-mcp-server@latest"],
+      "env": {
+        "AWS_PROFILE": "phamvanthanh-readonly-access-mfa",
+        "AWS_REGION": "ap-southeast-1"
+      }
+    },
+    "sagemaker-spark-upgrade": {
+      "command": "uvx",
+      "args": ["awslabs.sagemaker-unified-studio-spark-upgrade-mcp-server@latest"],
+      "env": {
+        "AWS_PROFILE": "phamvanthanh-readonly-access-mfa",
+        "AWS_REGION": "ap-southeast-1"
+      }
+    },
+    "location": {
+      "command": "uvx",
+      "args": ["awslabs.aws-location-mcp-server@latest"],
+      "env": {
+        "AWS_PROFILE": "phamvanthanh-readonly-access-mfa",
+        "AWS_REGION": "ap-southeast-1"
+      }
+    },
+    "iot-sitewise": {
+      "command": "uvx",
+      "args": ["awslabs.aws-iot-sitewise-mcp-server@latest"],
+      "env": {
+        "AWS_PROFILE": "phamvanthanh-readonly-access-mfa",
+        "AWS_REGION": "ap-southeast-1"
+      }
+    },
+    "healthomics": {
+      "command": "uvx",
+      "args": ["awslabs.aws-healthomics-mcp-server@latest"],
+      "env": {
+        "AWS_PROFILE": "phamvanthanh-readonly-access-mfa",
+        "AWS_REGION": "ap-southeast-1"
+      }
+    },
+    "healthimaging": {
+      "command": "uvx",
+      "args": ["awslabs.healthimaging-mcp-server@latest"],
+      "env": {
+        "AWS_PROFILE": "phamvanthanh-readonly-access-mfa",
+        "AWS_REGION": "ap-southeast-1"
+      }
+    },
+    "healthlake": {
+      "command": "uvx",
+      "args": ["awslabs.healthlake-mcp-server@latest"],
+      "env": {
+        "AWS_PROFILE": "phamvanthanh-readonly-access-mfa",
+        "AWS_REGION": "ap-southeast-1"
+      }
+    },
+
+    "_comment_aws_devtools": "=== 3.7 AWS OPTIONAL — Developer Tools ===",
+
+    "document-loader": {
+      "command": "uvx",
+      "args": ["awslabs.document-loader-mcp-server@latest"],
+      "env": {
+        "AWS_PROFILE": "phamvanthanh-readonly-access-mfa",
+        "AWS_REGION": "ap-southeast-1"
+      }
+    },
+    "git-repo-research": {
+      "command": "uvx",
+      "args": ["awslabs.git-repo-research-mcp-server@latest"],
+      "env": {
+        "AWS_PROFILE": "phamvanthanh-readonly-access-mfa",
+        "AWS_REGION": "ap-southeast-1"
+      }
+    },
+    "code-doc-gen": {
+      "command": "uvx",
+      "args": ["awslabs.code-doc-gen-mcp-server@latest"],
+      "env": {
+        "AWS_PROFILE": "phamvanthanh-readonly-access-mfa",
+        "AWS_REGION": "ap-southeast-1"
+      }
+    },
+    "frontend": {
+      "command": "uvx",
+      "args": ["awslabs.frontend-mcp-server@latest"],
+      "env": {
+        "AWS_PROFILE": "phamvanthanh-readonly-access-mfa",
+        "AWS_REGION": "ap-southeast-1"
+      }
+    },
+    "synthetic-data": {
+      "command": "uvx",
+      "args": ["awslabs.synthetic-data-mcp-server@latest"],
+      "env": {
+        "AWS_PROFILE": "phamvanthanh-readonly-access-mfa",
+        "AWS_REGION": "ap-southeast-1"
+      }
+    },
+    "openapi": {
+      "command": "uvx",
+      "args": ["awslabs.openapi-mcp-server@latest"],
+      "env": {
+        "AWS_PROFILE": "phamvanthanh-readonly-access-mfa",
+        "AWS_REGION": "ap-southeast-1"
+      }
+    },
+
+    "_comment_cicd": "=== 4. CI/CD ===",
+
+    "github": {
+      "command": "docker",
+      "args": ["run", "-i", "--rm", "-e", "GITHUB_PERSONAL_ACCESS_TOKEN", "ghcr.io/github/github-mcp-server"],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "<your-github-pat>"
+      }
+    },
+    "gitlab": {
+      "type": "http",
+      "url": "https://gitlab.com/api/v4/mcp"
+    },
+    "jenkins": {
+      "type": "http",
+      "url": "http://<jenkins-host>/mcp-server/mcp",
+      "headers": {
+        "Authorization": "Basic <base64-of-user:api-token>"
+      }
+    },
+
+    "_comment_monitoring": "=== 5. Monitoring ===",
+
+    "grafana": {
+      "command": "npx",
+      "args": ["-y", "@grafana/mcp-grafana"],
+      "env": {
+        "GRAFANA_URL": "http://localhost:3000",
+        "GRAFANA_TOKEN": "<your-grafana-api-token>"
+      }
+    },
+
+    "_comment_config": "=== 6. Configuration Management ===",
+
+    "ansible": {
+      "command": "npx",
+      "args": ["-y", "@ansible/aap-mcp-server"],
+      "env": {
+        "AAP_BASE_URL": "https://<your-aap-host>",
+        "AAP_OAUTH_TOKEN": "<your-aap-token>"
+      }
+    }
+  }
+}
