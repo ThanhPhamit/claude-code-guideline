@@ -120,7 +120,7 @@ Always setup regardless of project. These cover monitoring, security, cost, and 
 | 3   | CloudWatch       | `awslabs.cloudwatch-mcp-server`                | Metrics, alarms, logs analysis                   | [Docs](https://awslabs.github.io/mcp/servers/cloudwatch-mcp-server)                |
 | 4   | CloudTrail       | `awslabs.cloudtrail-mcp-server`                | API audit, security investigation                | [Docs](https://awslabs.github.io/mcp/servers/cloudtrail-mcp-server)                |
 | 5   | IAM              | `awslabs.iam-mcp-server`                       | IAM users, roles, policies review                | [Docs](https://awslabs.github.io/mcp/servers/iam-mcp-server)                       |
-| 6   | Well-Architected | `awslabs.well-architected-security-mcp-server` (uses `--from`) | Security assessment against WAF         | [Docs](https://awslabs.github.io/mcp/servers/well-architected-security-mcp-server) |
+| 6   | Well-Architected | `awslabs.well-architected-security-mcp-server` | Security assessment against WAF         | [Docs](https://awslabs.github.io/mcp/servers/well-architected-security-mcp-server) |
 | 7   | Billing & Cost   | `awslabs.billing-cost-management-mcp-server`   | Budgets, anomaly detection, RI/SP, Cost Explorer | [Docs](https://awslabs.github.io/mcp/servers/billing-cost-management-mcp-server)   |
 | 8   | Pricing          | `awslabs.aws-pricing-mcp-server`               | Pre-deployment cost estimation                   | [Docs](https://awslabs.github.io/mcp/servers/aws-pricing-mcp-server)               |
 
@@ -153,7 +153,7 @@ Always setup regardless of project. These cover monitoring, security, cost, and 
 },
 "well-architected": {
   "command": "uvx",
-  "args": ["--from", "awslabs.well-architected-security-mcp-server", "well-architected-security-mcp-server"],
+  "args": ["awslabs.well-architected-security-mcp-server"],
   "env": { "AWS_PROFILE": "<your-profile>", "AWS_REGION": "ap-southeast-1" }
 },
 "billing": {
